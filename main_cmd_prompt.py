@@ -7,6 +7,7 @@ import contextlib
 with contextlib.redirect_stdout(None):
     from pygame import mixer
 
+
 def log_session(break_time_in_min):
     ts = datetime.datetime.now().timestamp()
     readable = datetime.datetime.fromtimestamp(ts).isoformat()
@@ -30,7 +31,7 @@ def file_len(fname):
 
 
 if __name__ == '__main__':
-    print('@author: Swapnil Mali')         # author credits
+    print('@author Swapnil Mali')         # author credits
 
     fp = open('video_link.txt', 'r')
     link, user = fp.read().split()
@@ -57,14 +58,15 @@ if __name__ == '__main__':
             time.sleep(2)
 
             # this prints after what time next break is
-            for remaining in range(my_break-2, -1, -1):
+            for remaining in range(my_break, -1, -1):
                 sys.stdout.write("\r")
                 if remaining != 0:
-                    sys.stdout.write("Next Break in {:2d} sec".format(remaining))
+                    sys.stdout.write("Next Break in {:2d} min".format(remaining))
                 else:
                     sys.stdout.write("Session {} Completed ".format(session_id))
                 sys.stdout.flush()
-                time.sleep(1)
+                time.sleep(60)
+
 
             # plays end music
             """
@@ -78,7 +80,6 @@ if __name__ == '__main__':
             sys.stdout.write("\r")
             sys.stdout.flush()
 
-
             # break time starts from here
             speaker.say("It's time for a 5 min break {}".format(user))
             speaker.runAndWait()
@@ -90,9 +91,9 @@ if __name__ == '__main__':
             # prints after what time this break ends
             for remaining in range(5, -1, -1):
                 sys.stdout.write("\r")
-                sys.stdout.write("Break ends in {:2d} sec".format(remaining))
+                sys.stdout.write("Break ends in {:2d} min".format(remaining))
                 sys.stdout.flush()
-                time.sleep(1)
+                time.sleep(60)
 
             sys.stdout.write("\r")
             sys.stdout.write('')
