@@ -58,7 +58,7 @@ if __name__ == '__main__':
             time.sleep(2)
 
             # this prints after what time next break is
-            for remaining in range(my_break, -1, -1):
+            for remaining in range(my_break-1, -1, -1):
                 sys.stdout.write("\r")
                 if remaining != 0:
                     sys.stdout.write("Next Break in {:2d} min".format(remaining))
